@@ -1,0 +1,89 @@
+# L2 Calculator - Group Activity
+:toc:
+
+## Exercise
+**Group Activity (Total 100p)**
+Provide a program that fulfills the requirements included in the following sections
+
+### 1. Installation (15p)
+Program is provided by uploading to the PDU a .zip file with an MSI graphical Installer. The
+Group ID must be the name of the .zip file. The program must support its installation in MS
+Windows 10/11 (x64) by executing the MSI file. As part of the installation process a new folder
+in the corresponding Program Files folder must be created to contain all the program files. In
+case a required library, framework, etc. is not found in the target system they must be
+installed from the MSI program or at least it has to indicate where to download it (i.e. it has to
+provide the download link) and how to install it before finishing the installation process.  
+
+### 2. Execution (35p)
+The program must run in MS Windows 10/11 (x64) and must support both a GUI and a CLI
+mode.
+
+1. (15p) GUI mode will be executed from the Start menu and in a first window/screen the
+USER will be able to introduce the number of L3 Bytes he wants to send, select the L2
+protocols that must be used for the calculations between AAL5-ATM, AAL3/4-ATM and
+Ethernet and check if padding bytes must be also calculated. After USER has introduced the
+required input data he must click on a RUN button to get the calculations. The program must
+check that the number of L3 Bytes is a natural number and that at least one protocol has been
+selected. If any of those conditions is not fulfilled a message must appear to indicate the action
+needed to get the results.
+
+2. (15p) CLI mode will be launched from the installation path using its name and the following
+options.
+
+- -B option to introduce the number of Bytes that are send
+- -L2 option to set the L2 protocols for the calculations. Protocols AAL5-ATM, AAL3/4-
+ATM and Ethernet must be separated by a space.
+- -P option to set that padding bytes must be included in the results too
+- ? option to show the parameters that can be used to execute the program
+
+The program must check that the number of L3 Bytes is a natural number and that at least one
+protocol has been selected. If any of those conditions is not fulfilled a message must appear to
+indicate the action needed to get the results.
+
+
+### 3. Results (50p)
+After calculations are ready results must be presented as follows.
+
+1. (25p) Within the GUI a new second window/screen must show the results for the selected
+protocols. Results must include the total number of L2 Bytes that must be sent using that
+protocol and also the total number of required ATM cells or Ethernet frames. Just in case the
+USER has checked the option to calculate padding bytes they will be also provided besides the
+total number of L2 Bytes that must be sent.  
+
+2. (25p) Within the CLI there must be a label with the L2 protocol name (AAL5-ATM, AAL3/4-
+ATM, Ethernet) before the results. After the protocol name and using a new line the total
+number of Bytes send must precede the total number of cells or frames and if it has been
+requested the total number of padding bytes. If there are more than one L2 protocol an empty
+line must separate their results. Please take a look on the following example:
+
+**Windows:**
+```
+c:\Program Files>L2_Calculator>L2_Calculator.exe –B 800B –L2 AAL5-ATM Ethernet –P
+AAL5-ATM
+901 Bytes  
+17 cells  
+8 Bytes of padding
+
+Ethernet
+818 Bytes
+1 frames
+0 bytes of padding
+```
+
+**Linux:**
+```
+user@localhost:~$ L2_Calculator –B 800B –L2 AAL5-ATM Ethernet –P
+AAL5-ATM
+901 Bytes  
+17 cells  
+8 Bytes of padding
+
+Ethernet
+818 Bytes
+1 frames
+0 bytes of padding
+```
+
+### Extra. (+10p mark)  
+All the programs must be presented by each Group to the rest of the students. After that a poll
+will be available to select the best program that will receive an extra 10% mark.
