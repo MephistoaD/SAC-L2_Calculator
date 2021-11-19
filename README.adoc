@@ -30,11 +30,18 @@ needed to get the results.
 2. (15p) CLI mode will be launched from the installation path using its name and the following
 options.
 
-- -B option to introduce the number of Bytes that are send
-- -L2 option to set the L2 protocols for the calculations. Protocols AAL5-ATM, AAL3/4-
-ATM and Ethernet must be separated by a space.
-- -P option to set that padding bytes must be included in the results too
-- ? option to show the parameters that can be used to execute the program
+```
+Usage: L2_Calculator [options]
+Calculate the number and summarized size of AAL3/4-ATM, ALL5-ATM and Ethernet packages.
+
+Mandatory arguments for command line mode:
+  -B,  --bytes          (mandatory) option to introduce the number of Bytes that are sent.
+  -L2, --l2-protocol    (mandatory) option to set the L2 protocols for the calculations.
+                                    Protocols AAL5-ATM, AAL3/4-ATM and Ethernet must be separated by a space.
+  -P,  --padding        (optional)  option to set that padding bytes must be included in the results too
+       --gui            option to start the program in GUI mode
+   ?,  --help           option to show the parameters that can be used to execute the program
+```
 
 The program must check that the number of L3 Bytes is a natural number and that at least one
 protocol has been selected. If any of those conditions is not fulfilled a message must appear to
