@@ -5,5 +5,5 @@ package valueobjects;
  */
 
 public enum L2Protocol {
-    ETHERNET, ALL5_ATM, ALL3_4_ATM
+    ETHERNET, AAL5_ATM, AAL3_4_ATM
 }

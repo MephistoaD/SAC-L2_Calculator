@@ -24,7 +24,7 @@ public class TestInputValues {
         // ARRANGE -> prepare the environment here (mocks, stubs, objects, variables)
         final boolean GUI = false;
         final int BYTES = 42;
-        final L2Protocol[] L2PROTOCOL = {valueobjects.L2Protocol.ETHERNET, valueobjects.L2Protocol.ALL3_4_ATM, valueobjects.L2Protocol.ALL5_ATM};
+        final L2Protocol[] L2PROTOCOL = {valueobjects.L2Protocol.ETHERNET, valueobjects.L2Protocol.AAL3_4_ATM, valueobjects.L2Protocol.AAL5_ATM};
         final boolean PADDING = false;
         final boolean HELP = false;
         // ACT -> run the function you like to test here and save the output
@@ -43,7 +43,7 @@ public class TestInputValues {
         // ARRANGE -> prepare the environment here (mocks, stubs, objects, variables)
         final boolean GUI = false;
         final int BYTES = 6;
-        final L2Protocol[] L2PROTOCOL = {valueobjects.L2Protocol.ALL3_4_ATM, valueobjects.L2Protocol.ETHERNET};
+        final L2Protocol[] L2PROTOCOL = {valueobjects.L2Protocol.AAL3_4_ATM, valueobjects.L2Protocol.ETHERNET};
         final boolean PADDING = true;
         final boolean HELP = true;
         // ACT -> run the function you like to test here and save the output

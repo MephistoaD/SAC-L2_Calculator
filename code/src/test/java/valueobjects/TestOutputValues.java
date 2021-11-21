@@ -11,7 +11,7 @@ public class TestOutputValues {
     @DisplayName("Test Constructor sets values correctly (1)")
     void testConstructor1() {
         // ARRANGE -> prepare the environment here (mocks, stubs, objects, variables)
-        final L2Protocol PROTOCOL = L2Protocol.ALL5_ATM;
+        final L2Protocol PROTOCOL = L2Protocol.AAL5_ATM;
         final int TOTAL_BYTES = 99;
         final int NR_PACKETS = 16;
         final int BYTES_OF_PADDING = 42;
@@ -28,7 +28,7 @@ public class TestOutputValues {
     @DisplayName("Test Constructor sets values correctly (2)")
     void testConstructor2() {
         // ARRANGE -> prepare the environment here (mocks, stubs, objects, variables)
-        final L2Protocol PROTOCOL = L2Protocol.ALL5_ATM;
+        final L2Protocol PROTOCOL = L2Protocol.AAL5_ATM;
         final int TOTAL_BYTES = 78;
         final int NR_PACKETS = 3;
         final int BYTES_OF_PADDING = 10000;
