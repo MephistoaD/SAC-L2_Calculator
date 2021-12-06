@@ -25,6 +25,7 @@ import valueobjects.InputValues;
 
 public interface CLIInterpreter {
     public static InputValues readArgs(String[] args){
+        String data [] = new String[6];
         return null; // new Interpreter(System.out).convertArguments(args);
     }
     InputValues convertArguments(String[] args);
