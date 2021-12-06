@@ -30,9 +30,3 @@ public interface CLIInterpreter {
     InputValues convertArguments(String[] args);
 }
 
-public  class Interpreter {
-
-    String data [] = new String[6];
-
-
-}
