@@ -25,5 +25,6 @@ public interface GUIMode {
 
     public static void init(){
         // Constructor of the GUI class
+        //dani
     }
 }
