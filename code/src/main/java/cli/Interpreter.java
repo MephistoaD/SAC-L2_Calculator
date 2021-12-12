@@ -2,6 +2,8 @@ import org.apache.commons.cli.*;
 
 import java.io.OutputStream;
 
+package cli;
+
 
 public class Interpreter extends CLIInterpreter{
 
