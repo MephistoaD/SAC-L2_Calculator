@@ -1,9 +1,10 @@
 plugins {
     id 'java'
+    id 'application'
 }
 
 group 'org.example'
-version '1.0-SNAPSHOT'
+version '1.0-yummy'
 
 repositories {
     mavenCentral()
@@ -18,4 +19,12 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+mainClassName = 'Main'
+
+jar{
+    manifest{
+        attributes "Main-Class": "$mainClassName"
+    }
 }

@@ -19,10 +19,11 @@ public interface Calculator {
         return null; // new EthernetCalculator().calculate(bytes);
     }
     public static OutputValues calculateALL5ATM(int bytes ){
-        return null; // new ALL5ATMCalculator().calculate(bytes);
+        return null; // new AAL5Calculator().calculate(bytes);
     }
     public static OutputValues calculateALL34ATM(int bytes){
-        return null; // new ALL34ATMCalculator().calculate(bytes);
+        return null; // new ALL34Calculator().calculate(bytes);
+
     }
     OutputValues calculate(int bytes);
 }
