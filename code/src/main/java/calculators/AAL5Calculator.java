@@ -4,41 +4,38 @@ import valueobjects.InputValues;
 public class AAL5Calculator implements Calculator{
     int trailer;
     int numCeldas;
-
-    public AAL5Calculator() {
-        trailer = 0;
-        numCeldas = 8;
-    }
-
+    int total = 0;
+    int padding;
+    int bytesCell = 48;
+    int aux = 40;
+    int totalBytes = 53;
 
     @Override
     public OutputValues calculateALL5ATM(int bytes ) {
 
         int array[] = new int[3];
-        int total = 0;
-        int padding;
-
-        if(bytes %48 == 0) {
-            numCeldas =(bytes/48);
-        } else if (bytes > 48){
-            numCeldas = (bytes/48) + 1;
+        
+        if(bytes % bytesCell == 0) {
+            numCeldas =(bytes / bytesCell);
+        } else if (bytes > bytesCell){
+            numCeldas = (bytes / bytesCell) + 1;
         }else {
             numCeldas = 1;
         }
 
-        int rest = bytes % 48;
+        int rest = bytes % bytesCell;
 
-        if(resto < 40) {
-            padding = 48 - trailer - rest;
-        } else if (rest == 40 ){
+        if(resto < aux) {
+            padding = bytesCell - trailer - rest;
+        } else if (rest == aux ){
             padding = 0;
         } else {
-            int num = rest/40;
+            int num = rest / aux;
             numCeldas++;
-            int x = resto%40;
-            padding = 40 - x + 8;
+            int x = resto % aux;
+            padding = aux - x + 8;
         }
-        total = numCeldas*53;
+        total = numCeldas * totalBytes;
         array[0] = total;
         array[1] = numCeldas;
         array[2] = padding;
