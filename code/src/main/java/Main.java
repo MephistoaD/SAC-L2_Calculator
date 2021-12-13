@@ -10,6 +10,14 @@ import java.util.Objects;
 public class Main {
     public static void main(String[] args) {
         run(args);
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                JFrame frame = new GUIView1();
+                frame.setSize(500, 500);
+                frame.setVisible(true);
+            }
+        });
     }
 
     static int run(String[] args) {
