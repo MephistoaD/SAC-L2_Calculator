@@ -16,7 +16,7 @@ Comment=Calculate your Layer 2 packets of the OSI stack
 Path=/usr/local/bin/
 
 # The executable of the application, possibly with arguments.
-Exec=L2_Calculator
+Exec=L2_Calculator --gui
 
 # The name of the icon that will be used to display this entry
 Icon=/opt/L2_Calculator/icon.jpg

@@ -1,0 +1,5 @@
+#!/usr/bin/bash
+
+JAR_FILE_LOCATION=
+
+java -jar $JAR_FILE_LOCATION $*
