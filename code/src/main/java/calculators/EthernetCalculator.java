@@ -3,7 +3,8 @@ import valueobjects.InputValues;
 
 public class EthernetCalculator implements Calculator{
 
-    int eth_frames;
+    int eth_frames;GUIView1
+    GUIView1.form
     int bTotal;
     int padding;
     int bytesframe = 1500;
