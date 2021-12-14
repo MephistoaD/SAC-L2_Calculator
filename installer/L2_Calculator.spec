@@ -25,7 +25,6 @@ https://github.com/MarcMocker/SAC-L2_Calculator
 %install
 rm -fr $RPM_BUILD_ROOT
 make install
-# call install script?
 
 %clean
 rm -fr $RPM_BUILD_ROOT
