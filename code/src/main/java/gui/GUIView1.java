@@ -13,7 +13,7 @@ public class GUIView1 extends JFrame{
     private JButton runButton;
     private JCheckBox paddingCheckBox;
     ButtonGroup radiosGroup;
-    public String bytesText;
+    public String bytesString;
     public GUIView1() {
         JPanel jp = new JPanel();
         jp.add(panel1);
@@ -29,12 +29,14 @@ public class GUIView1 extends JFrame{
         runButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                bytesText = introduceTheBytesTextField.getText(); //get the number of bytes that the users have wirte in the textbox
-                functionality(bytesText); //When you press the button "run" we will can see the option selected.
+
+                bytesString = introduceTheBytesTextField.getText(); //get the number of bytes that the users have wirte in the textbox
+                int bytes = Integer.parseInt(bytesString);
+                functionality(bytes); //When you press the button "run" we will can see the option selected.
             }
         });
     }
-    public void functionality(String bytesText){
+    public void functionality(int bytes){
         //In this function we have three different "ifs" with the three algorithm that we have...
         //if we select one of them we have two options, that we just have selected the algorithm, or we have selected the algorithm and the padding
         String radioSelected="";
