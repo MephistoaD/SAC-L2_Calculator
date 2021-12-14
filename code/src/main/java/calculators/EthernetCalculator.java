@@ -1,16 +1,16 @@
-package  calculators;
+package code.src.main.java.calculators;
 import valueobjects.InputValues;
 
 public class EthernetCalculator implements Calculator{
 
-    int eth_frames;GUIView1
-    GUIView1.form
+    int eth_frames;
     int bTotal;
     int padding;
     int bytesframe = 1500;
 
+
     @Override
-    public  OutputValues calculateEthernet(int bytes){
+    public int[] calculate(int bytes) {
         int array[] = new int[3];
 
         if(bytes % bytesframe == 0) {
@@ -43,6 +43,5 @@ public class EthernetCalculator implements Calculator{
         }
         return array;
     }
-
-    }
 }
+
