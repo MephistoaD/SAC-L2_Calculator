@@ -1,11 +1,15 @@
-import calculators.Calculator;
+package code.src.main.java;
 import cli.CLIInterpreter;
+import code.src.main.java.calculators.Calculator;
 import valueobjects.InputValues;
 import valueobjects.L2Protocol;
 import valueobjects.OutputValues;
 
 import javax.swing.*;
 import java.util.Objects;
+
+import static valueobjects.L2Protocol.AAL3_4_ATM;
+import static valueobjects.L2Protocol.AAL5_ATM;
 
 public class Main {
     private CLIInterpreter cli;
