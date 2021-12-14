@@ -11,7 +11,7 @@ public class AAL34Calculator implements calculators.Calculator {
     @Override
     public int[] calculate(int bytes) {
 
-        int array[] = new int[3];
+        int data[] = new int[3];
         int n = 0;
 
 
@@ -33,16 +33,16 @@ public class AAL34Calculator implements calculators.Calculator {
 
         for(int i = 0; i < 3; i++) {
             switch(i) {
-                case 0: System.out.print("total bytes: ");
+                case 0: System.out.print("Bytes: ");
                     break;
-                case 1: System.out.print("total cells: ");
+                case 1: System.out.print("Cells: ");
                     break;
-                case 2: System.out.print("padding: ");
+                case 2: System.out.print("Padding: ");
                     break;
             }
-            System.out.println(array[i]);
+            System.out.println(data[i]);
         }
-        return array;
+        return data;
     }
 }
 }
