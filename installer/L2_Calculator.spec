@@ -33,3 +33,5 @@ rm -fr $RPM_BUILD_ROOT
 %license LICENSE
 
 /usr/local/bin/L2_Calculator
+/usr/share/applications/L2_Calculator.desktop
+/opt/L2_Calculator

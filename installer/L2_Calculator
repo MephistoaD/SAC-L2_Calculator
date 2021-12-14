@@ -1,5 +1,5 @@
 #!/usr/bin/bash
 
-JAR_FILE_LOCATION=
+JAR_FILE_LOCATION=/opt/L2_Calculator/L2_Calculator.jar
 
 java -jar $JAR_FILE_LOCATION $*
