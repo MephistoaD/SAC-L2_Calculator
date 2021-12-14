@@ -1,6 +1,5 @@
 import calculators.Calculator;
 import cli.CLIInterpreter;
-import gui.GUIMode;
 import valueobjects.InputValues;
 import valueobjects.L2Protocol;
 import valueobjects.OutputValues;
@@ -8,8 +7,25 @@ import valueobjects.OutputValues;
 import java.util.Objects;
 
 public class Main {
+    private CLIInterpreter cli;
+    private Calculator ethernet, aal5, aal34;
+
+    Main(CLIInterpreter cli, Calculator ethernet, Calculator aal5, Calculator aal34){
+        this.cli = cli;
+        this.ethernet = ethernet;
+        this.aal5 = aal5;
+        this.aal34 = aal34;
+    }
+
+
     public static void main(String[] args) {
-        run(args);
+        CLIInterpreter cli = CLIInterpreter.create();
+        Calculator ethernet = Calculator.createEhernetCalculator();
+        Calculator aal5 = Calculator.createAAL5Calculator();
+        Calculator aal34 = Calculator.createAAL34Calculator();
+        Main m = new Main(cli, ethernet, aal5, aal34);
+        m.run(args);
+
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -20,43 +36,65 @@ public class Main {
         });
     }
 
-    static int run(String[] args) {
+    public int run(String[] args) {
         // convert the args to object of type InputValues
-        InputValues inputValues = CLIInterpreter.readArgs(args);
+        InputValues inputValues = cli.convertArguments(args);
         // if the inputValues are a null reference, the program terminates (use return, not exit!)
         if (Objects.isNull(inputValues)){
             return 1;
         }
         // if the program was started in GUI mode, start the gui and don't do anything more
         if (inputValues.GUI){
-            GUIMode.init();
+            startGUIMode();
+            return 0;
+        }
+        // if the program was started in help mode print the help message and terminate
+        if (inputValues.HELP){
+            printHelpMessage();
             return 0;
         }
         // if the program was started in CLI mode, run the calculations for each element in the PROTOCOLS array
         // print the results in the required format to the CLI
         for (L2Protocol protocol : inputValues.PROTOCOLS){
-            System.out.println(printOutputValues(calculateValuesForProtocol(inputValues.BYTES, protocol), inputValues.PADDING));
+            System.out.println(getOutputText(calculateValuesForProtocol(inputValues.BYTES, protocol), inputValues.PADDING));
         }
         return 0;
     }
 
-    private static OutputValues calculateValuesForProtocol(int bytes, L2Protocol protocol) {
+    private void printHelpMessage() {
+        System.out.println("Usage: L2_Calculator [options]\n" +
+                "Calculate the number and summarized size of AAL3/4-ATM, ALL5-ATM and Ethernet packages.\n" +
+                "\n" +
+                "Mandatory arguments for command line mode:\n" +
+                "  -B,  --bytes          (mandatory) option to introduce the number of Bytes that are sent.\n" +
+                "  -L2, --l2-protocol    (mandatory) option to set the L2 protocols for the calculations.\n" +
+                "                                    Protocols AAL5-ATM, AAL3/4-ATM and Ethernet must be separated by a space.\n" +
+                "  -P,  --padding        (optional)  option to set that padding bytes must be included in the results too\n" +
+                "       --gui            option to start the program in GUI mode\n" +
+                "   ?,  --help           option to show the parameters that can be used to execute the program");
+    }
+
+    private void startGUIMode() {
+
+    }
+
+    private OutputValues calculateValuesForProtocol(int bytes, L2Protocol protocol) {
         OutputValues outputValues = null;
         switch (protocol){
             case AAL3_4_ATM:
-                outputValues = Calculator.calculateALL34ATM(bytes);
+                outputValues = aal34.calculate(bytes);
                 break;
             case AAL5_ATM:
-                outputValues = Calculator.calculateALL5ATM(bytes);
+                outputValues = aal5.calculate(bytes);
                 break;
             case ETHERNET:
-                outputValues = Calculator.calculateEthernet(bytes);
+                outputValues = ethernet.calculate(bytes);
                 break;
         }
         return outputValues;
     }
 
-    public static String printOutputValues(OutputValues outputValues, boolean padding){
+    public String getOutputText(OutputValues outputValues, boolean padding){
         StringBuilder stringBuilder = new StringBuilder();
         String protocol;
         String packets;

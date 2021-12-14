@@ -15,14 +15,14 @@ import valueobjects.OutputValues;
 //             Use unittests instead to evaluate the quality of the code!
 
 public interface Calculator {
-    public static OutputValues calculateEthernet(int bytes){
-        return null; // new EthernetCalculator().calculate(bytes);
+    public static Calculator createEhernetCalculator(){
+        return new EthernetCalculator();
     }
-    public static OutputValues calculateALL5ATM(int bytes ){
-        return null; // new AAL5Calculator().calculate(bytes);
+    public static Calculator createAAL5Calculator(){
+        return new AAL5Calculator();
     }
-    public static OutputValues calculateALL34ATM(int bytes){
-        return null; // new ALL34Calculator().calculate(bytes);
+    public static Calculator createAAL34Calculator(int bytes){
+        return new AAL34Calculator();
 
     }
     OutputValues calculate(int bytes);

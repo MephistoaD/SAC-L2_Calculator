@@ -24,8 +24,8 @@ import valueobjects.InputValues;
 //             Use unittests instead to evaluate the quality of the code!
 
 public interface CLIInterpreter {
-    public static InputValues readArgs(String[] args){
-        return null; // new Interpreter(System.out).convertArguments(args);
+    public static CLIInterpreter create(){
+        return new Interpreter();
     }
-    InputValues convertArguments(String[] args);
+    public InputValues convertArguments(String[] args);
 }

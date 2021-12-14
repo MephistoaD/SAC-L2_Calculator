@@ -5,7 +5,7 @@ import java.io.OutputStream;
 package cli;
 
 
-public class Interpreter extends CLIInterpreter{
+public class Interpreter implements CLIInterpreter{
 
         OutputStream      output  = null;
         CommandLineParser parser  = null;
