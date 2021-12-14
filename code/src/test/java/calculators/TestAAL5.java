@@ -1,8 +1,8 @@
 package calculators;
 
+import code.src.main.java.calculators.AAL5Calculator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import valueobjects.OutputValues;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -18,7 +18,7 @@ public class TestAAL5 {
         final int EXPECTED_CELLS = 17;
         final int EXPECTED_PADDING = 8;
         // ACT
-        OutputValues outputValues = calculator.calculate(BYTES);
+        int[] outputValues = calculator.calculate(BYTES);
         // ASSERT
         assertThat(outputValues.TOTAL_BYTES).isEqualTo(EXPECTED_BYTES);
         assertThat(outputValues.NR_PACKETS).isEqualTo(EXPECTED_CELLS);
