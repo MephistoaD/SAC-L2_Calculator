@@ -4,6 +4,7 @@ import valueobjects.InputValues;
 import valueobjects.L2Protocol;
 import valueobjects.OutputValues;
 
+import javax.swing.*;
 import java.util.Objects;
 
 public class Main {
@@ -29,7 +30,7 @@ public class Main {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                JFrame frame = new GUIView1();
+                JFrame frame = new com.company.GUIView1();
                 frame.setSize(500, 500);
                 frame.setVisible(true);
             }
