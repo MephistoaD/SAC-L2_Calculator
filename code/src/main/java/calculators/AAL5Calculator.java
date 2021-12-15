@@ -42,7 +42,6 @@ public class AAL5Calculator implements Calculator {
             data[1] = numCeldas;
             data[2] = padding;
 
-
             for (int i = 0; i < 3; i++) {
                 switch (i) {
                     case 0:
