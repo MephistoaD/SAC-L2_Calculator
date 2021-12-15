@@ -1,6 +1,7 @@
 package code.src.main.java;
 import code.src.main.java.cli.CLIInterpreter;
 import code.src.main.java.calculators.Calculator;
+import code.src.main.java.gui.GUIView1;
 import code.src.main.java.valueobjects.InputValues;
 import code.src.main.java.valueobjects.L2Protocol;
 import code.src.main.java.valueobjects.OutputValues;
@@ -31,7 +32,7 @@ public class Main {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                JFrame frame = new com.company.GUIView1();
+                JFrame frame = new GUIView1();
                 frame.setSize(500, 500);
                 frame.setVisible(true);
             }
