@@ -1,4 +1,4 @@
-package gui;
+package code.src.main.java.gui;
 
 public interface GUIMode {
 
