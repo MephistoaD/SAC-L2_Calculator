@@ -21,10 +21,10 @@ public class EthernetCalculator implements Calculator{
             eth_frames = 1;
         }
 
-        int rest = bytes % bytesCell;
+        int rest = bytes % bytesframe;
 
 
-        btotal = eth_frames * totalBytes;
+        btotal = eth_frames * bytesframe;
         array[0] = btotal;
         array[1] = eth_frames;
         array[2] = padding;
