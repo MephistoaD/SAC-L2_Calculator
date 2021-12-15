@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-TAR=tarball.tar
-FOLDER=.
+TAR=L2_Calculator-0.1.tar.gz
+FOLDER=L2_Calculator-0.1
 
-tar -cvf $TAR $FOLDER 2> /dev/null > /dev/null
+tar -cvzf $TAR $FOLDER 2> /dev/null > /dev/null
