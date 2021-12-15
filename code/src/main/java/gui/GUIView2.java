@@ -1,4 +1,4 @@
-package com.company;
+package code.src.main.java.gui;
 
 import javax.swing.*;
 
