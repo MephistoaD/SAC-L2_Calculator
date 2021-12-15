@@ -1,4 +1,4 @@
-package cli;
+package code.src.main.java.cli;
 
 import valueobjects.InputValues;
 
