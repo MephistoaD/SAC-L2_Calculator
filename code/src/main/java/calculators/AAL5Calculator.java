@@ -1,5 +1,5 @@
 package code.src.main.java.calculators;
-
+import code.src.main.java.valueobjects.InputValues;
 public class AAL5Calculator implements Calculator {
     int trailer;
     int numCeldas;
