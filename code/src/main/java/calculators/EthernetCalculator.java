@@ -1,5 +1,5 @@
 package code.src.main.java.calculators;
-import valueobjects.InputValues;
+import code.src.main.java.valueobjects.InputValues;
 
 public class EthernetCalculator implements Calculator{
 
