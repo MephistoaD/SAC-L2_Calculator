@@ -1,6 +1,6 @@
 package code.src.main.java.cli;
 
-import valueobjects.InputValues;
+import code.src.main.java.valueobjects.InputValues;
 
 // TODO: Write an interpreter class which takes the String array and
 //  - extracts the given values from this array, even if it's unordered
