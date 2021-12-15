@@ -1,7 +1,7 @@
 package code.src.main.java.calculators;
 import valueobjects.InputValues;
 
-public class AAL34Calculator implements calculators.Calculator {
+public class AAL34Calculator implements Calculator {
     int numCeldas;
     int bytesCell = 44;
     int totalBytes = 48;
@@ -27,9 +27,9 @@ public class AAL34Calculator implements calculators.Calculator {
         int resto = bytes % bytesCell;
         int padding = bytesCell - resto;
 
-        array[0] = numCeldas * totalBytes;
-        array[1] = numCeldas;
-        array[2] = padding;
+        data[0] = numCeldas * totalBytes;
+        data[1] = numCeldas;
+        data[2] = padding;
 
         for(int i = 0; i < 3; i++) {
             switch(i) {
