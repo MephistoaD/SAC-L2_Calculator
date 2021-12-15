@@ -14,7 +14,7 @@ public class EthernetCalculator implements Calculator{
 
     @Override
     public int[] calculate(int bytes) {
-        int array[] = new int[3];
+        int data[] = new int[3];
 
         //-------------!
         if(bytes>bytesframemin && bytes<bytesframemax)
@@ -36,9 +36,9 @@ public class EthernetCalculator implements Calculator{
 
 
         totalbytes = eth_frames * bytes;
-        array[0] = totalbytes;
-        array[1] = eth_frames;
-        array[2] = padding;
+        data[0] = totalbytes;
+        data[1] = eth_frames;
+        data[2] = padding;
 
 
         for(int i=0;i<3;i++) {
@@ -50,9 +50,9 @@ public class EthernetCalculator implements Calculator{
                 case 2: System.out.print("padding: ");
                     break;
             }
-            System.out.println(array[i]);
+            System.out.println(data[i]);
         }
-        return array;
+        return data;
     }
 
 }
