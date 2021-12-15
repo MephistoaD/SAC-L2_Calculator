@@ -1,15 +1,12 @@
 package code.src.main.java;
-import cli.CLIInterpreter;
+import code.src.main.java.cli.CLIInterpreter;
 import code.src.main.java.calculators.Calculator;
-import valueobjects.InputValues;
-import valueobjects.L2Protocol;
-import valueobjects.OutputValues;
+import code.src.main.java.valueobjects.InputValues;
+import code.src.main.java.valueobjects.L2Protocol;
+import code.src.main.java.valueobjects.OutputValues;
 
 import javax.swing.*;
 import java.util.Objects;
-
-import static valueobjects.L2Protocol.AAL3_4_ATM;
-import static valueobjects.L2Protocol.AAL5_ATM;
 
 public class Main {
     private CLIInterpreter cli;
@@ -83,8 +80,8 @@ public class Main {
 
     }
 
-    private OutputValues calculateValuesForProtocol(int bytes, L2Protocol protocol) {
-        OutputValues outputValues = null;
+    private int[] calculateValuesForProtocol(int bytes, L2Protocol protocol) {
+        int[] outputValues = null;
         switch (protocol){
             case AAL3_4_ATM:
                 outputValues = aal34.calculate(bytes);
