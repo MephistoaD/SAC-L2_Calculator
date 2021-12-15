@@ -4,28 +4,39 @@ import code.src.main.java.valueobjects.InputValues;
 public class EthernetCalculator implements Calculator{
 
     int eth_frames;
-    int bTotal;
+    int bytes;
     int padding;
-    int bytesframe = 1500;
+    int bytesframemax = 1500;
+    int bytesframemin= 46;
+    int rest;
+    int totalbytes;
 
 
     @Override
     public int[] calculate(int bytes) {
         int array[] = new int[3];
 
-        if(bytes % bytesframe == 0) {
-            eth_frames =(bytes / bytesframe);
-        } else if (bytes > bytesframe){
-            eth_frames = (bytes / bytesframe) + 1;
-        }else {
+        //-------------!
+        if(bytes>bytesframemin && bytes<bytesframemax)
+        {
             eth_frames = 1;
+        }else if (bytes<bytesframemin)
+        {
+            //es solo un frame y necesita padding pa llegar a 46
+            eth_frames= bytes + padding;  //bytes enviados mas el padding para llegar hasta 46
+
+        }else if (bytes>bytesframemax)
+        {
+            // modulo para saber cuantos frames llena, y con el resto vuelves a aplicar lo de arriba
+            rest= bytes % bytesframemin;
+            //resto del modulo le sumo el padding
+            eth_frames= rest+ padding;
+
         }
 
-        int rest = bytes % bytesframe;
 
-
-        btotal = eth_frames * bytesframe;
-        array[0] = btotal;
+        totalbytes = eth_frames * bytes;
+        array[0] = totalbytes;
         array[1] = eth_frames;
         array[2] = padding;
 
@@ -43,5 +54,7 @@ public class EthernetCalculator implements Calculator{
         }
         return array;
     }
+
 }
+
 
