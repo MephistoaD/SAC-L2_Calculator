@@ -1,8 +1,10 @@
+package code.src.main.java.cli;
+
 import org.apache.commons.cli.*;
 
 import java.io.OutputStream;
 
-package cli;
+
 
 
 public class Interpreter implements CLIInterpreter{
@@ -11,8 +13,10 @@ public class Interpreter implements CLIInterpreter{
         CommandLineParser parser  = null;
         CommandLine       cmdLine = null;
 
+
+
     @Override
-    public InputValues readArgs(String[] args) {
+    public InputValues convertArguments(String[] args) {
         ///////////////////////////////////////////////////////////////////////
         // Configuramos las opciones de validación de entrada.
         ///////////////////////////////////////////////////////////////////////
@@ -36,9 +40,9 @@ public class Interpreter implements CLIInterpreter{
             cmdLine = parser.parse(options, args);
 
             if (cmdLine.hasOption("?")) {    // No hace falta preguntar por el parámetro "help". Ambos son sinónimos;
-            System.out.println ("B = number of bytes that are send");
-            System.out.println ("L2 = n2 protocols for the calculations");
-            System.out.println ("P = adding bytes");
+                System.out.println ("B = number of bytes that are send");
+                System.out.println ("L2 = n2 protocols for the calculations");
+                System.out.println ("P = adding bytes");
 
 
             }
