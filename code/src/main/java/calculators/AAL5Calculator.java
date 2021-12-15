@@ -1,6 +1,6 @@
 package code.src.main.java.calculators;
 
-public class AAL5Calculator implements calculators.Calculator {
+public class AAL5Calculator implements Calculator {
     int trailer;
     int numCeldas;
     int total = 0;
