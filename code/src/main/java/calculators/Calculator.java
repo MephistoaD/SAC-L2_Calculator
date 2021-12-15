@@ -20,8 +20,8 @@ public interface Calculator {
         return new EthernetCalculator();
     }
     public static Calculator createAAL5Calculator(){
-        return (Calculator) new AAL5Calculator();
+        return new AAL5Calculator();
     }
-    public static Calculator createAAL34Calculator(){return (Calculator) new AAL34Calculator();}
+    public static Calculator createAAL34Calculator(){return new AAL34Calculator();}
     int[] calculate(int bytes);
 }
