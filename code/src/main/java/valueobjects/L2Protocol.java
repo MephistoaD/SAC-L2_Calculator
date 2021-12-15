@@ -1,4 +1,4 @@
-package valueobjects;
+package code.src.main.java.valueobjects;
 
 /**
  * PLEASE: don't change anything here
