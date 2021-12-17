@@ -1,58 +1,38 @@
 package code.src.main.java.calculators;
 import code.src.main.java.valueobjects.InputValues;
+import code.src.main.java.valueobjects.L2Protocol;
+import code.src.main.java.valueobjects.OutputValues;
 
 public class EthernetCalculator implements Calculator{
 
     int eth_frames;
-    int bytes;
     int padding;
     int bytesframemax = 1500;
     int bytesframemin= 46;
     int rest;
-    int totalbytes;
+    int totalBytesOfAllCells;
 
 
     @Override
-    public int[] calculate(int bytes) {
-        int data[] = new int[3];
-
+    public OutputValues calculate(int bytes) {
         //-------------!
-        if(bytes>bytesframemin && bytes<bytesframemax)
+        if( bytes > bytesframemin && bytes < bytesframemax)
         {
             eth_frames = 1;
-        }else if (bytes<bytesframemin)
+        }else if ( bytes < bytesframemin )
         {
             //es solo un frame y necesita padding pa llegar a 46
-            eth_frames= bytes + padding;  //bytes enviados mas el padding para llegar hasta 46
-
-        }else if (bytes>bytesframemax)
+            eth_frames= bytes + padding;  //bytes enviados mas el padding para llegar hasta 4
+        }else if (bytes > bytesframemax)
         {
             // modulo para saber cuantos frames llena, y con el resto vuelves a aplicar lo de arriba
             rest= bytes % bytesframemin;
             //resto del modulo le sumo el padding
             eth_frames= rest+ padding;
-
         }
 
-
-        totalbytes = eth_frames * bytes;
-        data[0] = totalbytes;
-        data[1] = eth_frames;
-        data[2] = padding;
-
-
-        for(int i=0;i<3;i++) {
-            switch(i) {
-                case 0: System.out.print("total bytes: ");
-                    break;
-                case 1: System.out.print("ethernet frames: ");
-                    break;
-                case 2: System.out.print("padding: ");
-                    break;
-            }
-            System.out.println(data[i]);
-        }
-        return data;
+        totalBytesOfAllCells = eth_frames * bytes;
+        return new code.src.main.java.valueobjects.OutputValues(L2Protocol.ETHERNET, totalBytesOfAllCells,  eth_frames, padding);
     }
 
 }
