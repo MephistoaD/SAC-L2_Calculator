@@ -1,7 +1,7 @@
-package gui;
+package code.src.main.java.gui;
 
-import calculators.Calculator;
-import valueobjects.OutputValues;
+import code.src.main.java.calculators.Calculator;
+import code.src.main.java.valueobjects.OutputValues;
 
 import javax.swing.*;
 import java.awt.*;
