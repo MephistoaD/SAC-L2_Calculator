@@ -1,5 +1,7 @@
 package code.src.main.java.gui;
 
+import code.src.main.java.calculators.AAL34Calculator;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -53,6 +55,7 @@ public class GUIView1 extends JFrame{
 
             if(paddingCheckBox.isSelected()){
                 //HERE WE CALL THE FUNCTION WHICH CALCULATE THE ALGORITHM SELECTED but WITH PADDING
+                AAL34Calculator
             }else {
                 radioSelected+="AAL5 selected, ";
                 //HERE WE CALL THE FUNCTION WHICH CALCULATE THE ALGORITHM SELECTED
@@ -69,6 +72,10 @@ public class GUIView1 extends JFrame{
         }
         JOptionPane.showMessageDialog(null, radioSelected);
 
+    }
+
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
     }
     /*public void View() {
         setContentPane(panel1); //Panel1 contains all elements
