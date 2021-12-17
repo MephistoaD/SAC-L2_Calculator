@@ -1,57 +1,32 @@
 package code.src.main.java.calculators;
 import code.src.main.java.valueobjects.InputValues;
-public class AAL5Calculator implements Calculator {
-    int trailer;
-    int numCeldas;
-    int total = 0;
-    int padding;
+import code.src.main.java.valueobjects.L2Protocol;
+import code.src.main.java.valueobjects.OutputValues;
+
+public class AAL5Calculator implements code.src.main.java.calculators.Calculator {
     int bytesCell = 48;
-    int aux = 40;
     int totalBytes = 53;
+    final int TRAILER = 8;
+
     @Override
-    public int[] calculate(int bytes) {
-            int data[] = new int[3];
+    public OutputValues calculate(int bytes) {
+        /* 1496 bytes / 48 bytes of payload per AAL5 packet = 31,16 (round up)→ 32 used packets (8 bytes leftover data in the last packet)
 
-            if (bytes % bytesCell == 0) {
-                numCeldas = (bytes / bytesCell);
-            } else if (bytes > bytesCell) {
-                numCeldas = (bytes / bytesCell) + 1;
-            } else {
-                numCeldas = 1;
-            }
-            int rest = bytes % bytesCell;
-            if (rest < aux) {
-                padding = bytesCell - trailer - rest;
-            }
-            else if (rest == aux) {
-                padding = 0;
-            }
-            else {
-                int num = rest / aux;
-                numCeldas++;
-                int x = rest % aux;
-                padding = aux - x + 8;
-            }
-            total = numCeldas * totalBytes;
-            data[0] = total;
-            data[1] = numCeldas;
-            data[2] = padding;
+            Last ATM package:
 
-            for (int i = 0; i < 3; i++) {
-                switch (i) {
-                    case 0:
-                        System.out.print("Bytes: ");
-                        break;
-                    case 1:
-                        System.out.print("Cells: ");
-                        break;
-                    case 2:
-                        System.out.print("Padding: ");
-                        break;
-                }
-                System.out.println(data[i]);
-            }
-            return data;
+            48 bytes of payload - 8 bytes of trailer - 8 bytes of leftover data = 32 bytes of padding
 
+            → 32 ATM cells are going to be used, while the last one will be filled with 32 bytes of padding
+        *
+        * */
+        int celdas = (int) Math.ceil(bytes / (double) bytesCell);
+        int bytesLastCell = bytes % bytesCell;
+        int padding = bytesCell - TRAILER - bytesLastCell;
+        if (padding < 0){
+            celdas++;
+            padding += bytesCell;
+        }
+        int totalBytesOfAllCells = totalBytes * celdas;
+        return new code.src.main.java.valueobjects.OutputValues(L2Protocol.AAL5_ATM, totalBytesOfAllCells, celdas, padding);
     }
 }

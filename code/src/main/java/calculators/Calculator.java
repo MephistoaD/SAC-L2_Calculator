@@ -23,5 +23,5 @@ public interface Calculator {
         return new AAL5Calculator();
     }
     public static Calculator createAAL34Calculator(){return new AAL34Calculator();}
-    int[] calculate(int bytes);
+    code.src.main.java.valueobjects.OutputValues calculate(int bytes);
 }
