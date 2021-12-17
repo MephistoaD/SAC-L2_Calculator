@@ -6,22 +6,18 @@ public class AAL34Calculator implements Calculator {
     int bytesCell = 44;
     int totalBytes = 48;
 
-
-
     @Override
     public int[] calculate(int bytes) {
-
         int data[] = new int[3];
         int n = 0;
-
-
         numCeldas = bytes / bytesCell;
-
         if(bytes % bytesCell == 0) {
             numCeldas = (bytes / bytesCell);
-        }else if (n > bytesCell){
+        }
+        else if (n > bytesCell){
             numCeldas = (bytes / bytesCell) + 1;
-        }else {
+        }
+        else {
             numCeldas = 1;
         }
         int resto = bytes % bytesCell;
