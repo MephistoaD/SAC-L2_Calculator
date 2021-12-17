@@ -1,48 +1,55 @@
-package code.src.main.java;
-import code.src.main.java.cli.CLIInterpreter;
-import code.src.main.java.calculators.Calculator;
-import code.src.main.java.valueobjects.InputValues;
-import code.src.main.java.valueobjects.L2Protocol;
-import code.src.main.java.valueobjects.OutputValues;
+
+
+import calculators.Calculator;
+import cli.CLIInterpreter;
+import gui.GUIMode;
+import valueobjects.InputValues;
+import valueobjects.L2Protocol;
+import valueobjects.OutputValues;
 
 import java.util.Objects;
 
 public class Main {
-    private CLIInterpreter cli;
-    private Calculator ethernet, aal5, aal34;
+    private final CLIInterpreter CLI;
+    private final Calculator ETHERNET_CALCULATOR, AAL5_CALCULATOR, AAL34_CALCULATOR;
 
     Main(CLIInterpreter cli, Calculator ethernet, Calculator aal5, Calculator aal34){
-        this.cli = cli;
-        this.ethernet = ethernet;
-        this.aal5 = aal5;
-        this.aal34 = aal34;
+        this.CLI = cli;
+        this.ETHERNET_CALCULATOR = ethernet;
+        this.AAL5_CALCULATOR = aal5;
+        this.AAL34_CALCULATOR = aal34;
     }
 
 
     public static void main(String[] args) {
+        // args = new String[]{"-B", "800B", "-L2", "AAL5-ATM", "Ethernet", "-P"};
+        // args = new String[]{"--gui"};
         CLIInterpreter cli = CLIInterpreter.create();
         Calculator ethernet = Calculator.createEhernetCalculator();
         Calculator aal5 = Calculator.createAAL5Calculator();
         Calculator aal34 = Calculator.createAAL34Calculator();
         Main m = new Main(cli, ethernet, aal5, aal34);
         m.run(args);
+
+
     }
 
     public int run(String[] args) {
         // convert the args to object of type InputValues
-        InputValues inputValues = cli.convertArguments(args);
+        InputValues inputValues = CLI.convertArguments(args);
         // if the inputValues are a null reference, the program terminates (use return, not exit!)
         if (Objects.isNull(inputValues)){
+            printInvalidMessage();
             return 1;
-        }
-        // if the program was started in GUI mode, start the gui and don't do anything more
-        if (inputValues.GUI){
-            startGUIMode();
-            return 0;
         }
         // if the program was started in help mode print the help message and terminate
         if (inputValues.HELP){
             printHelpMessage();
+            return 0;
+        }
+        // if the program was started in GUI mode, start the gui and don't do anything more
+        if (inputValues.GUI){
+            GUIMode.init();
             return 0;
         }
         // if the program was started in CLI mode, run the calculations for each element in the PROTOCOLS array
@@ -51,6 +58,13 @@ public class Main {
             System.out.println(getOutputText(calculateValuesForProtocol(inputValues.BYTES, protocol), inputValues.PADDING));
         }
         return 0;
+    }
+
+    private void printInvalidMessage() {
+        System.out.println("L2_Calculator: You must specify valid options or parameters\n" +
+                "\n" +
+                "Try 'L2_Calculator --help' for more information.\n" +
+                "\n");
     }
 
     private void printHelpMessage() {
@@ -66,21 +80,17 @@ public class Main {
                 "   ?,  --help           option to show the parameters that can be used to execute the program");
     }
 
-    private void startGUIMode() {
-
-    }
-
-    private int[] calculateValuesForProtocol(int bytes, L2Protocol protocol) {
-        int[] outputValues = null;
+    private OutputValues calculateValuesForProtocol(int bytes, L2Protocol protocol) {
+        OutputValues outputValues = null;
         switch (protocol){
             case AAL3_4_ATM:
-                outputValues = aal34.calculate(bytes);
+                outputValues = AAL34_CALCULATOR.calculate(bytes);
                 break;
             case AAL5_ATM:
-                outputValues = aal5.calculate(bytes);
+                outputValues = AAL5_CALCULATOR.calculate(bytes);
                 break;
             case ETHERNET:
-                outputValues = ethernet.calculate(bytes);
+                outputValues = ETHERNET_CALCULATOR.calculate(bytes);
                 break;
         }
         return outputValues;
