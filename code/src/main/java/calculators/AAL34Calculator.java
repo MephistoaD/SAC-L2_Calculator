@@ -9,19 +9,14 @@ public class AAL34Calculator implements Calculator {
 
     @Override
     public code.src.main.java.valueobjects.OutputValues calculate(int bytes) {
-        numCeldas = bytes / bytesCell;
-        if(bytes % bytesCell == 0) {
-            numCeldas = (bytes / bytesCell);
+         numCeldas = (int) Math.ceil(bytes / (double) bytesCell);
+        int bytesLastCell = bytes % bytesCell;
+        int padding = bytesCell - bytesLastCell;
+        if (padding < 0){
+            numCeldas++;
+            padding += bytesCell;
         }
-        else if (bytes > bytesCell){
-            numCeldas = (bytes / bytesCell) + 1;
-        }
-        else {
-            numCeldas = 1;
-        }
-        int resto = bytes % bytesCell;
-        int padding = bytesCell - resto;
-
-        return new code.src.main.java.valueobjects.OutputValues(L2Protocol.AAL3_4_ATM, numCeldas * totalBytes, numCeldas, padding);
+        int totalBytesOfAllCells = totalBytes * numCeldas;
+        return new code.src.main.java.valueobjects.OutputValues(L2Protocol.AAL5_ATM, totalBytesOfAllCells, numCeldas, padding);
     }
 }
