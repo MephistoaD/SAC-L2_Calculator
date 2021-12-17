@@ -1,14 +1,13 @@
-package code.src.main.java.cli;
-import code.src.main.java.valueobjects.L2Protocol;
-
-
-
+package cli;
+import valueobjects.InputValues;
+import valueobjects.L2Protocol;
 
 
 public class Interpreter implements CLIInterpreter{
 
         private int bytes;
         private boolean padding = false;
+        private L2Protocol[] protocols = null;
 
     @Override
     public InputValues convertArguments(String[] args) {
@@ -16,17 +15,17 @@ public class Interpreter implements CLIInterpreter{
         for (int i = 0; i < args.length; i++) {
             if (args[i].equals("?") || args[i].equals("--help")){
 
-                return new code.src.main.java.valueobjects.InputValues(-1, null, false, true);
+                return new InputValues(-1, null, false, true);
             }
             if (args[i].equals("--gui")){
 
-                return new code.src.main.java.valueobjects.InputValues(true);
+                return new InputValues(true);
             }
             if (args[i].equals("-B")){
                 if (++i >= args.length){
                     return null;
                 }
-                bytes = getBytes(args[i + 1]);
+                bytes = getBytes(args[i]);
             }
             if(args[i].equals("-P")){
                 padding= true;
@@ -35,33 +34,37 @@ public class Interpreter implements CLIInterpreter{
                 if (++i >= args.length){
                     return null;
                 }
-
+                protocols = readL2Protocol(args, i);
+                if (protocols.length == 0){
+                    return null;
+                }
             }
         }
+        return new InputValues(bytes, protocols, padding, false);
     }
+
     private L2Protocol[]  readL2Protocol(String[] args, int offset){
 
         int index;
-        for(index = 0; index + offset < args.length; index++ ){
+        for(index = 1; index + offset < args.length; index++ ){
             if (!(args[index + offset].equals("AAL5-ATM") ||args[index + offset].equals("AAL3/4-ATM") || args[index + offset].equals("Ethernet"))){
                 break;
             }
         }
         L2Protocol[] arrayL2 = new L2Protocol[index];
         int i;
-        for(i = 0; i <= index; i++ ){
-
-            if (args[i].equals("AAL5-ATM")){
+        for(i = 0; i <= index; i++ ) {
+            System.out.println(args[i]);
+            if (args[i+offset].equals("AAL5-ATM")) {
                 arrayL2[i] = L2Protocol.AAL5_ATM;
             }
-            if (args[i].equals("AAL3/4-ATM")){
+            if (args[i+offset].equals("AAL3/4-ATM")) {
                 arrayL2[i] = L2Protocol.AAL3_4_ATM;
             }
-            if (args[i].equals("Ethernet")){
+            if (args[i+offset].equals("Ethernet")) {
                 arrayL2[i] = L2Protocol.ETHERNET;
             }
         }
-
         return arrayL2;
     }
 

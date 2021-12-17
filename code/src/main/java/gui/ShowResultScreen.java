@@ -1,7 +1,8 @@
-package code.src.main.java.gui;
+package gui;
 
-import code.src.main.java.valueobjects.L2Protocol;
-import code.src.main.java.valueobjects.OutputValues;
+
+import valueobjects.L2Protocol;
+import valueobjects.OutputValues;
 
 import javax.swing.*;
 import java.awt.*;

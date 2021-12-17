@@ -1,6 +1,5 @@
-package code.src.main.java.cli;
+package cli;
 
-import code.src.main.java.valueobjects.InputValues;
 
 // TODO: Write an interpreter class which takes the String array and
 //  - extracts the given values from this array, even if it's unordered
@@ -22,6 +21,8 @@ import code.src.main.java.valueobjects.InputValues;
 //  HINT: take the CLI Output as dependency-injected parameter of type PrintStream. This simplifies the testing process
 //  IMPORTANT: Do not touch this interface!
 //             Use unittests instead to evaluate the quality of the code!
+
+import valueobjects.InputValues;
 
 public interface CLIInterpreter {
     public static CLIInterpreter create(){

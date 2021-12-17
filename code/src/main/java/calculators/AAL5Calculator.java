@@ -1,9 +1,9 @@
-package code.src.main.java.calculators;
-import code.src.main.java.valueobjects.InputValues;
-import code.src.main.java.valueobjects.L2Protocol;
-import code.src.main.java.valueobjects.OutputValues;
+package calculators;
 
-public class AAL5Calculator implements code.src.main.java.calculators.Calculator {
+import valueobjects.L2Protocol;
+import valueobjects.OutputValues;
+
+public class AAL5Calculator implements Calculator {
     int bytesCell = 48;
     int totalBytes = 53;
     final int TRAILER = 8;
@@ -27,6 +27,6 @@ public class AAL5Calculator implements code.src.main.java.calculators.Calculator
             padding += bytesCell;
         }
         int totalBytesOfAllCells = totalBytes * celdas;
-        return new code.src.main.java.valueobjects.OutputValues(L2Protocol.AAL5_ATM, totalBytesOfAllCells, celdas, padding);
+        return new OutputValues(L2Protocol.AAL5_ATM, totalBytesOfAllCells, celdas, padding);
     }
 }

@@ -1,4 +1,4 @@
-package code.src.main.java.calculators;
+package calculators;
 
 // TODO: one class for each protocol implementing this interface
 //  and having exactly one package-private method which is calculate()
@@ -12,8 +12,8 @@ package code.src.main.java.calculators;
 //  IMPORTANT: Do not touch this interface!
 //             Use unittests instead to evaluate the quality of the code!
 
-import code.src.main.java.calculators.AAL34Calculator;
-import code.src.main.java.calculators.AAL5Calculator;
+
+import valueobjects.OutputValues;
 
 public interface Calculator {
     public static Calculator createEhernetCalculator(){
@@ -23,5 +23,5 @@ public interface Calculator {
         return new AAL5Calculator();
     }
     public static Calculator createAAL34Calculator(){return new AAL34Calculator();}
-    code.src.main.java.valueobjects.OutputValues calculate(int bytes);
+    public OutputValues calculate(int bytes);
 }

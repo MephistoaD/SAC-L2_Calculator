@@ -1,6 +1,5 @@
 package calculators;
 
-import code.src.main.java.calculators.AAL34Calculator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import valueobjects.OutputValues;
@@ -11,7 +10,7 @@ public class TestAAL34 {
 
     @Test
     @DisplayName("AAL3/4: 800B example from the exercise")
-    void test_800B_example(){
+    void test_800B_example() {
         // ARRANGE
         AAL34Calculator calculator = new AAL34Calculator();
         final int BYTES = 800;
@@ -24,4 +23,5 @@ public class TestAAL34 {
         assertThat(outputValues.TOTAL_BYTES).isEqualTo(EXPECTED_BYTES);
         assertThat(outputValues.NR_PACKETS).isEqualTo(EXPECTED_CELLS);
         assertThat(outputValues.BYTES_OF_PADDING).isEqualTo(EXPECTED_PADDING);
+    }
 }

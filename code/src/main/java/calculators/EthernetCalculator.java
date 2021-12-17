@@ -1,7 +1,7 @@
-package code.src.main.java.calculators;
-import code.src.main.java.valueobjects.InputValues;
-import code.src.main.java.valueobjects.L2Protocol;
-import code.src.main.java.valueobjects.OutputValues;
+package calculators;
+
+import valueobjects.L2Protocol;
+import valueobjects.OutputValues;
 
 public class EthernetCalculator implements Calculator{
 
@@ -15,6 +15,7 @@ public class EthernetCalculator implements Calculator{
 
     @Override
     public OutputValues calculate(int bytes) {
+
         //-------------!
         if( bytes > bytesframemin && bytes < bytesframemax)
         {
@@ -27,12 +28,14 @@ public class EthernetCalculator implements Calculator{
         {
             // modulo para saber cuantos frames llena, y con el resto vuelves a aplicar lo de arriba
             rest= bytes % bytesframemin;
+            // calcular el padding
+
             //resto del modulo le sumo el padding
             eth_frames= rest+ padding;
         }
 
         totalBytesOfAllCells = eth_frames * bytes;
-        return new code.src.main.java.valueobjects.OutputValues(L2Protocol.ETHERNET, totalBytesOfAllCells,  eth_frames, padding);
+        return new valueobjects.OutputValues(L2Protocol.ETHERNET, totalBytesOfAllCells,  eth_frames, padding);
     }
 
 }
