@@ -1,17 +1,12 @@
 package code.src.main.java.cli;
+import code.src.main.java.valueobjects.L2Protocol;
 
-import org.apache.commons.cli.*;
-
-import java.io.OutputStream;
 
 
 
 
 public class Interpreter implements CLIInterpreter{
 
-        OutputStream      output  = null;
-        CommandLineParser parser  = null;
-        CommandLine       cmdLine = null;
         private int bytes;
         private boolean padding = false;
 
@@ -46,20 +41,29 @@ public class Interpreter implements CLIInterpreter{
     }
     private L2Protocol[]  readL2Protocol(String[] args, int offset){
 
-        L2Protocol[] arrayL2 = new L2Protocol[3];
+        int index;
+        for(index = 0; index + offset < args.length; index++ ){
+            if (!(args[index + offset].equals("AAL5-ATM") ||args[index + offset].equals("AAL3/4-ATM") || args[index + offset].equals("Ethernet"))){
+                break;
+            }
+        }
+        L2Protocol[] arrayL2 = new L2Protocol[index];
+        int i;
+        for(i = 0; i <= index; i++ ){
 
-        if (){
-
-
+            if (args[i].equals("AAL5-ATM")){
+                arrayL2[i] = L2Protocol.AAL5_ATM;
+            }
+            if (args[i].equals("AAL3/4-ATM")){
+                arrayL2[i] = L2Protocol.AAL3_4_ATM;
+            }
+            if (args[i].equals("Ethernet")){
+                arrayL2[i] = L2Protocol.ETHERNET;
+            }
         }
 
-
-
+        return arrayL2;
     }
-
-
-
-
 
     private int getBytes(String arg) {
         int kb = 1024;
