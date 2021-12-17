@@ -1,12 +1,10 @@
 package code.src.main.java;
 import code.src.main.java.cli.CLIInterpreter;
 import code.src.main.java.calculators.Calculator;
-import code.src.main.java.gui.GUIView1;
 import code.src.main.java.valueobjects.InputValues;
 import code.src.main.java.valueobjects.L2Protocol;
 import code.src.main.java.valueobjects.OutputValues;
 
-import javax.swing.*;
 import java.util.Objects;
 
 public class Main {
@@ -28,15 +26,6 @@ public class Main {
         Calculator aal34 = Calculator.createAAL34Calculator();
         Main m = new Main(cli, ethernet, aal5, aal34);
         m.run(args);
-
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                JFrame frame = new GUIView1();
-                frame.setSize(500, 500);
-                frame.setVisible(true);
-            }
-        });
     }
 
     public int run(String[] args) {
