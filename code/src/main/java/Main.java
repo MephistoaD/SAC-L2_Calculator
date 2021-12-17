@@ -1,11 +1,11 @@
 
 
-import calculators.Calculator;
-import cli.CLIInterpreter;
-import gui.GUIMode;
-import valueobjects.InputValues;
-import valueobjects.L2Protocol;
-import valueobjects.OutputValues;
+import code.src.main.java.calculators.Calculator;
+import code.src.main.java.cli.CLIInterpreter;
+import code.src.main.java.gui.GUIMode;
+import code.src.main.java.valueobjects.InputValues;
+import code.src.main.java.valueobjects.L2Protocol;
+import code.src.main.java.valueobjects.OutputValues;
 
 import java.util.Objects;
 
