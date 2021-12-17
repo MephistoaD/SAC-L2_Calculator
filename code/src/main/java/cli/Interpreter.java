@@ -12,76 +12,82 @@ public class Interpreter implements CLIInterpreter{
         OutputStream      output  = null;
         CommandLineParser parser  = null;
         CommandLine       cmdLine = null;
-
-
+        private int bytes;
+        private boolean padding = false;
 
     @Override
     public InputValues convertArguments(String[] args) {
-        ///////////////////////////////////////////////////////////////////////
-        // Configuramos las opciones de validación de entrada.
-        ///////////////////////////////////////////////////////////////////////
-        Options options = new Options();
-        options.addOption("B", true, "introduce the number of bytes that are send");
-        options.addOption("L2", true, "set the L2 protocols for the calculations. Protocols AAL5-ATM, AAL3/4-ATM and Ethernet must be separated by a space");
-        options.addOption("P", true, "set that padding bytes must be included in the results too");
-        options.addOption("?", true, "show the parameters that can be used to execute the program ");
 
+        for (int i = 0; i < args.length; i++) {
+            if (args[i].equals("?") || args[i].equals("--help")){
 
-        // No pueden aparecen las dos opciones simultáneamente.
-        OptionGroup group = new OptionGroup();
-        group.addOption(new Option("err", "Salida estándar de errores"));
-        group.addOption(new Option("console", "Salida estándar"));
-        options.addOptionGroup(group);
+                return new code.src.main.java.valueobjects.InputValues(-1, null, false, true);
+            }
+            if (args[i].equals("--gui")){
 
-
-        try {
-
-            parser = new BasicParser();
-            cmdLine = parser.parse(options, args);
-
-            if (cmdLine.hasOption("?")) {    // No hace falta preguntar por el parámetro "help". Ambos son sinónimos;
-                System.out.println ("B = number of bytes that are send");
-                System.out.println ("L2 = n2 protocols for the calculations");
-                System.out.println ("P = adding bytes");
-
+                return new code.src.main.java.valueobjects.InputValues(true);
+            }
+            if (args[i].equals("-B")){
+                if (++i >= args.length){
+                    return null;
+                }
+                bytes = getBytes(args[i + 1]);
+            }
+            if(args[i].equals("-P")){
+                padding= true;
+            }
+            if (args[i].equals("-L2") || args[i].equals("--l2-protocol")){
+                if (++i >= args.length){
+                    return null;
+                }
 
             }
-
-
-            if (cmdLine.hasOption("B")) {
-
-            }
-
-            if (cmdLine.getOptionValue("L2")) {
-
-            }
-
-            if (cmdLine.hasOption("P")) {
-
-            }
-
-
-
-            if (cmdLine.hasOption("console")) {
-                output = System.out;
-            } else if (cmdLine.hasOption("err")) {
-                output = System.err;
-            } else {
-                output = null;
-            }
-
-            // ..............................................................
-            // Aquí irían las tareas que tuviera que realizar la aplicación
-            // ..............................................................
-
-            System.out.println("OK");
-
-        } catch (org.apache.commons.cli.ParseException ex) {
-            System.out.println(ex.getMessage());
-
-            new HelpFormatter().printHelp(CommonsCliApp.class.getCanonicalName(), options);    // Error, imprimimos la ayuda
-        } catch (java.lang.NumberFormatException ex) {
-            new HelpFormatter().printHelp(CommonsCliApp.class.getCanonicalName(), options);    // Error, imprimimos la ayuda
         }
+    }
+    private L2Protocol[]  readL2Protocol(String[] args, int offset){
+
+        L2Protocol[] arrayL2 = new L2Protocol[3];
+
+        if (){
+
+
+        }
+
+
+
+    }
+
+
+
+
+
+    private int getBytes(String arg) {
+        int kb = 1024;
+        int mb = kb * 1024;
+        int gb = mb * 1024;
+        int tb = gb * 1024;
+        int pb = tb * 1024;
+        arg.toUpperCase();
+        int bytes = -1;
+        try{
+            if (arg.endsWith("KB")){ // implement kilobytes
+                bytes = (Integer.parseInt(arg.substring(0, arg.length()-2))*kb);
+            } else if (arg.endsWith("MB")){ // implement megabytes
+                bytes = (Integer.parseInt(arg.substring(0, arg.length()-2))*mb);
+            } else if (arg.endsWith("GB")){ // implement gigabytes
+                bytes = (Integer.parseInt(arg.substring(0, arg.length()-2))*gb);
+            } else if (arg.endsWith("TB")){ // implement terrabytes
+                bytes = (Integer.parseInt(arg.substring(0, arg.length()-2))*tb);
+            } else if (arg.endsWith("PB")){ // implement petabytes
+                bytes = (Integer.parseInt(arg.substring(0, arg.length()-2))*pb);
+            } else if (arg.endsWith("B")){ // implement bytes
+                bytes = (Integer.parseInt(arg.substring(0, arg.length()-1)));
+            } else { // implement lonely numbers
+                bytes = Integer.parseInt(arg);
+            }
+        } catch (NumberFormatException e){ // given string is not convertible to a number
+            return -1;
+        }
+        return bytes;
     }
 }
