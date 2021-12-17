@@ -8,11 +8,6 @@ public class AAL5Calculator implements Calculator {
     int bytesCell = 48;
     int aux = 40;
     int totalBytes = 53;
-
-
-
-
-
     @Override
     public int[] calculate(int bytes) {
             int data[] = new int[3];
@@ -24,14 +19,14 @@ public class AAL5Calculator implements Calculator {
             } else {
                 numCeldas = 1;
             }
-
             int rest = bytes % bytesCell;
-
             if (rest < aux) {
                 padding = bytesCell - trailer - rest;
-            } else if (rest == aux) {
+            }
+            else if (rest == aux) {
                 padding = 0;
-            } else {
+            }
+            else {
                 int num = rest / aux;
                 numCeldas++;
                 int x = rest % aux;
